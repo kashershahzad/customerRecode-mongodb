@@ -13,12 +13,13 @@ export default function Page() {
   const [message, setMessage] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [isLoading, setIsLoading] = useState(true);
 
+  // Fetch customers from the API
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/customerdata');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/customerdata`);
         const data = await response.json();
         if (response.ok) {
           setCustomers(data.map(customer => ({
@@ -61,7 +62,7 @@ export default function Page() {
       };
 
       try {
-        const response = await fetch('http://localhost:3000/api/customerdata', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/customerdata`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ export default function Page() {
       };
 
       try {
-        const response = await fetch('http://localhost:3000/api/customerdata', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/customerdata`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -134,7 +135,7 @@ export default function Page() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/customerdata`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/customerdata`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -170,7 +171,7 @@ export default function Page() {
 
   return (
     <div className="p-4 flex flex-col items-center">
-      <h1 className='text-3xl font-bold m-10'>All customer Records</h1>
+      <h1 className='text-3xl font-bold m-10'>All Customer Records</h1>
       <Button variant="contained" color="primary" onClick={handleClickOpen}>
         New Customer+
       </Button>
@@ -201,7 +202,7 @@ export default function Page() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {isLoading ? ( 
+            {isLoading ? (
               <TableRow>
                 <TableCell colSpan={6}>
                   Loading...
@@ -219,7 +220,7 @@ export default function Page() {
                     </Button>
                   </TableCell>
                   <TableCell>
-                  <Button variant="contained" color="error" onClick={() => handleDelete(customer.id)}>
+                    <Button variant="contained" color="error" onClick={() => handleDelete(customer.id)}>
                       Delete
                     </Button>
                   </TableCell>
