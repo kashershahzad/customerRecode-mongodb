@@ -201,7 +201,7 @@ export default function Page() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {isLoading ? ( // Show loading text if isLoading is true
+            {isLoading ? ( 
               <TableRow>
                 <TableCell colSpan={6}>
                   Loading...
