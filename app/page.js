@@ -15,7 +15,6 @@ export default function Page() {
   const [editingCustomer, setEditingCustomer] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch customers from the API
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
@@ -36,7 +35,7 @@ export default function Page() {
         setMessage('Error: ' + error.message);
         setOpenSnackbar(true);
       } finally {
-        setIsLoading(false); // Set loading to false when done
+        setIsLoading(false); 
       }
     };
 
