@@ -13,12 +13,12 @@ export default function Page() {
   const [message, setMessage] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/customerdata');
+        const response = await fetch('/api/customerdata');
         const data = await response.json();
         if (response.ok) {
           setCustomers(data.map(customer => ({
@@ -61,7 +61,7 @@ export default function Page() {
       };
 
       try {
-        const response = await fetch('http://localhost:3000/api/customerdata', {
+        const response = await fetch('/api/customerdata', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ export default function Page() {
       };
 
       try {
-        const response = await fetch('http://localhost:3000/api/customerdata', {
+        const response = await fetch('/api/customerdata', {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ export default function Page() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/customerdata`, {
+      const response = await fetch(`/api/customerdata`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
